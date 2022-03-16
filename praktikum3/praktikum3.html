@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CONVERT AND CALCULATOR</title>
+	<link rel="stylesheet" type="text/css" href="praktikum3.css">
+</head>
+<script>
+	function con() {
+		var val1 = document.convert.num.value
+
+		if (val1 >= 0 && val1 <= 40) {
+			document.convert.result.value = "E"
+		} else if (val1 >= 41 && val1 <= 55) {
+			document.convert.result.value = "D"
+		} else if (val1 >= 56 && val1 <= 60) {
+			document.convert.result.value = "C"
+		} else if (val1 >= 61 && val1 <= 65) {
+			document.convert.result.value = "BC"
+		} else if (val1 >= 66 && val1 <= 70) {
+			document.convert.result.value = "B"
+		} else if (val1 >= 71 && val1 <= 80) {
+			document.convert.result.value = "AB"
+		} else if (val1 >= 81 && val1 <= 100) {
+			document.convert.result.value = "A"
+		} else {
+			document.convert.result.value = "Angka Tidak Terdeteksi"
+		}
+	}
+
+	function pl() {
+		var val1 = Number(document.cal.bil1.value)
+		var val2 = Number(document.cal.bil2.value)
+		var hasil = val1+val2
+
+		document.cal.res.value = hasil
+	}
+	function mn() {
+		var val1 = Number(document.cal.bil1.value)
+		var val2 = Number(document.cal.bil2.value)
+		var hasil = val1-val2
+
+		document.cal.res.value = hasil
+	}
+	function tim() {
+		var val1 = Number(document.cal.bil1.value)
+		var val2 = Number(document.cal.bil2.value)
+		var hasil = val1*val2
+
+		document.cal.res.value = hasil
+	}
+	function dv() {
+		var val1 = Number(document.cal.bil1.value)
+		var val2 = Number(document.cal.bil2.value)
+		var hasil = val1/val2
+
+		document.cal.res.value = hasil
+	}
+	function md() {
+		var val1 = Number(document.cal.bil1.value)
+		var val2 = Number(document.cal.bil2.value)
+		var hasil = val1%val2
+
+		document.cal.res.value = hasil
+	}
+</script>
+<body>
+	<h1>CONVERT & ARITMETHICS</h1>
+	<ul class="apps">
+		<li class="con">
+			<div>
+				<form name="convert">
+					<h2>CONVERT NUMBER</h2>
+					<input type="text" name="num"> <input type="text" name="result">
+					<br> </br>
+					<input type="button" name="bconvert" value="UBAH" onclick=con()>
+				</form>
+			</div>
+		</li>
+		<li class="calcu">
+			<div>
+				<form name="cal">
+					<h2>CALCULATOR</h2>
+					<input type="text" name="bil1"> <input type="text" name="bil2">
+					<br> </br>
+					<input type="button" name="op" value="+" onclick=pl()> 
+					<input type="button" name="op" value="-" onclick=mn()>
+					<input type="button" name="op" value="X" onclick=tim()>
+					<input type="button" name="op" value="/" onclick=dv()>
+					<input type="button" name="op" value="%" onclick=md()>
+					<br> </br>
+					<input type="text" name="res">
+				</form>
+			</div>
+		</li>
+	</ul>
+	
+	<script type="text/javascript">
+		document.write("Dimodifikasi terakhir pada " + document.lastModified);
+	</script>
+</body>
+</html>

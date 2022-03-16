@@ -1,0 +1,21 @@
+h1 {
+	text-align: center;
+	font-family: sans-serif;
+}
+
+.apps {
+	display: grid;
+	list-style-type: none;
+	margin: 0; padding: 0;
+	grid-template-rows: repeat(1, auto);
+	grid-template-columns: repeat(2, auto);
+	font-family: sans-serif;
+}
+.apps ul li {
+	padding: 2em;
+}
+.apps ul li div {
+	display: block;
+	font-size: 1.4em;
+	margin-bottom: 1em;
+}
