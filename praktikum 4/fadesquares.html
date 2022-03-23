@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JQUERY</title>
+	<script type="text/javascript" src="js/jquery 3.6.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".fadein").click(function(){
+				$(".sq").fadeIn("slow", function(){
+					$(".sq").css({opacity: 1.0});
+				});
+			});
+			$(".fadeout").click(function(){
+				$(".sq").fadeOut("slow");
+			});
+			$(".fade03").click(function(){
+				$(".sq").fadeTo("slow", 0.3);
+			});
+		});
+	</script>
+	<style type="text/css">
+		.sq {
+			height: 100px;
+			width: 150px;
+			background-color: skyblue;
+		}
+	</style>
+</head>
+<body>
+	<h2>Fade Square</h2>
+	<div class="sq"></div> <br>
+	<button class="fadein">Fade In</button>
+	<button class="fadeout">Fade Out</button>
+	<button class="fade03">Fade to 0.3</button>
+</body>
+</html>

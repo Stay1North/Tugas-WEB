@@ -1,0 +1,39 @@
+h2 {
+	font-family: sans-serif;
+	font-weight: bold;
+	text-align: center;
+	font-size: 40px;
+}
+
+img {
+	width: 250px;
+	height:  300px;
+}
+
+.picts {
+	display: grid;
+	list-style-type: none;
+	margin: 0; padding: 0;
+	grid-template-rows: repeat(2, auto);
+	grid-template-columns: repeat(2, auto);
+	font-family: sans-serif;
+	text-align: center;
+}
+.picts ul li {
+	padding: 2em;
+}
+.picts ul li div {
+	display: block;
+	font-size: 1.4em;
+	margin-bottom: 1em;
+}
+
+.boxes {
+	display: grid;
+	list-style-type: none;
+	margin: 0; padding: 0;
+	grid-template-rows: repeat(2, auto);
+	grid-template-columns: repeat(2, auto);
+	font-family: sans-serif;
+	text-align: center;
+}

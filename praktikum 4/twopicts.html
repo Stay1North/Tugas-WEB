@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JQUERY</title>
+	<script type="text/javascript" src="js/jquery 3.6.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".sb1").click(function(){
+				$(".logo1").hide();
+			});
+			$(".tp1").click(function(){
+				$(".logo1").show();
+			});
+			$(".sb2").click(function(){
+				$(".logo2").hide();
+			});
+			$(".tp2").click(function(){
+				$(".logo2").show();
+			});
+		});
+	</script>
+	<link rel="stylesheet" type="text/css" href="praktikum4.css">
+</head>
+<body>
+	<h2>The Two Picts</h2>
+	<ul class="picts">
+		<li class="tb1">
+			<div>
+				<button class="sb1">Sembunyikan</button>
+				<br>
+				<button class="tp1">Tampilkan</button>
+			</div>
+		</li>
+		<li class="img1">
+			<div>
+				<img class="logo1" src="logoaot.png">
+			</div>
+		</li>
+		<li class="tb2">
+			<div>
+				<button class="sb2">Sembunyikan</button>
+				<br>
+				<button class="tp2">Tampilkan</button>
+			</div>
+		</li>
+		<li class="img2">
+			<div>
+				<img class="logo2" src="logoupn.png">
+			</div>
+		</li>
+	</ul>
+
+</body>
+</html>

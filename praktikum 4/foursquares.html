@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JQUERY</title>
+	<script type="text/javascript" src="js/jquery 3.6.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(".sq1").dblclick(function(){
+				$(".sq1").addClass("kuning");
+			});
+			$(".sq2").dblclick(function(){
+				$(".sq2").addClass("kuning");
+			});
+			$(".sq3").dblclick(function(){
+				$(".sq3").addClass("kuning");
+			});
+			$(".sq4").dblclick(function(){
+				$(".sq4").addClass("kuning");
+			});
+		});
+	</script>
+	<style type="text/css">
+		button {
+			height: 50px;
+			width: 50px;
+			background-color: skyblue;
+		}
+		.kuning {
+			background-color: orangered;
+		}
+		.biru {
+			background-color: skyblue;
+		}
+	</style>
+</head>
+<body>
+	<h2>The Four Squares</h2>
+	<p>Klik 2x maka warna kotak akan berubah</p>
+	<button class="sq1"></button> 
+	<button class="sq2"></button> 
+	<button class="sq3"></button>
+	<button class="sq4"></button>
+</body>
+</html>
