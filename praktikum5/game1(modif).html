@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Game dengan JS dan HTML5</title>
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		canvas {
+			background: #eee;
+			display: block;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<!--elemen html untuk menambahkan background audio secara looping-->
+	<audio hidden autoplay loop>
+		<!--elemen source untuk mencari sumber audio-->
+		<source src="fogmoore.mp3" type="audio/mpeg">
+	</audio> 
+
+	<canvas id="myCanvas" width="500" height="350"></canvas> 
+	<script type="text/javascript">
+		
+		var canvas = document.getElementById('myCanvas'); 
+		
+		var context = canvas.getContext('2d');
+
+		
+		var speed = 10;
+		var gameSpeed = 100;
+		var bird = {
+			x : canvas.width / 2,
+			y : canvas.height / 2,
+			vx : 0,
+			vy : 1
+		};
+
+		var pip = [];
+
+		var gravity = 0.2;
+		var bounce = 4;
+		var distance = 100;
+		var dir = 'left';
+
+		document.onkeydown = function (e){
+			if (!e) {
+				e = window.e;
+			}
+
+			var code = e.keyCode;
+			if (e.charCode && code == 0) {
+				code = e.charCode;
+			}
+
+			switch (code){
+				case 37: //left
+				if (dir != 'right'){
+					dir = 'left';
+				}
+				break;
+
+				case 38: 
+				if (dir != 'down') {
+					dir = 'up';
+				}
+				break;
+
+				case 39:
+				if (dir != 'left') {
+					dir = 'right';
+				}
+				break;
+
+				case 40:
+				if (dir != 'up'){
+					dir = 'down';
+				}
+				break;
+			}
+		}
+
+		var b = 0.8;
+		//fungsi membuat 'burung'
+		function makeBird() {
+			//memulai path
+			context.beginPath();
+			//membentu 'burung' dengan arc (lingkaran) dan ukurannya
+			context.arc(bird.x, bird.y, 10, 10, Math.PI);
+			//memberikan warna 'burung' dengan 'skyblue'
+			context.fillStyle = "skyblue";
+			//mengisi warna pada 'burung'
+			context.fill();
+			//menutup path
+			context.closePath();
+
+			bird.y += bird.vy;
+			bird.vy += gravity;
+			if (dir == 'up') {
+				bird.vy = -bounce;
+				dir = '';
+			}
+
+			if (bird.y + 10 >= canvas.height) {
+				dir = 'up';
+			}
+		}
+
+		//fungsi membuat pipa
+		function makePip() {
+			//for loop untuk tiap index array pip
+			for  (p of pip) {
+				//memulai path
+				context.beginPath();
+				//membentuk pipa atas dengan rect dan ukurannya
+				context.rect(p.top.x, p.top.y, p.top.width, p.top.height);
+				//memberikan warna pipa atas dengan 'green'
+				context.fillStyle = 'green';
+				//mengisi warna pipa
+				context.fill();
+				//menutup path
+				context.closePath();
+
+				//bottom p koordinat y sama dengan tinggi atas p ditambah distance
+				p.bottom.y = p.top.height +distance;
+				//tinggi bottom p sama dengan tinggi canvas - p bottom koordinan y
+				p.bottom.height = (canvas.height - p.bottom.y);
+
+				//memulai path
+				context.beginPath();
+				//membentu pipa bawah dengan rect dan ukurannya
+				context.rect(p.bottom.x, p.bottom.y, p.bottom.width, p.bottom.height);
+				//memberikan warna pipa bawah dengan 'green'
+				context.fillStyle = 'green';
+				//mengisi warna pipa
+				context.fill();
+				//menutup path
+				context.closePath();
+
+				p.bottom.x -= 1;
+				p.top.x -= 1;
+
+				if (p.top.x < -10) {
+					pip.shift();
+				}
+
+				if (isCollideB (bird, p.bottom) || isCollideT (bird, p.top) || bird.y +10 >= canvas.height) {
+					alert('Your score : ' + score);
+					window.location.reload();
+				}
+
+				if (score % 10 == 0) {
+					console.log (distance);
+					score += 1;
+					distance -= 5;
+				}
+			}
+		}
+
+
+		function isCollideB (b, p) {
+			return (
+				(b.x + 10 > p.x) && 
+				(b.x < p.x + 10) &&
+				(b.y > p.y || b.y + 10 > p.y)
+			);
+		}
+
+		function isCollideT(b, p) {
+			return(
+				(b.x + 10 > p.x) && 
+				(b.x < p.x + 10) &&
+				(b.y < p.y + p.height)
+			);
+		}
+
+		function rnd (min, max) {
+			var r = Math.round(Math.random() * (max - min) + min);
+			return (r - r % speed);
+		}
+
+		var score = 0;
+		var frame = 0;
+		(function loop () {
+			requestAnimationFrame(function() {
+				context.clearRect(0, 0, canvas.width, canvas.height);
+				if (frame % gameSpeed == 0) {
+					pip.push ( {
+						top : {
+							x : canvas.width,
+							y : 0,
+							height : rnd(70, 140),
+							width : 10,
+						},
+						bottom :{
+							x : canvas.width,
+							y : 0,
+							height : rnd(100,160),
+							width : 10,
+						}
+					});
+					score++;
+				}
+				makeBird();
+				makePip();
+				frame++;
+				loop();
+			})
+		}) ();
+	</script>
+	
+</body>
+</html>
